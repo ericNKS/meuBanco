@@ -10,29 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class ContaFisicaController extends Controller
 {
     /**
-     * Authentica o usuario
-     *
-     * @return 
-     */
-    public function login(Request $request)
-    {
-        $usuario = $request->all(['email', 'password']);
-        $token = auth('api')->attempt($usuario);
-
-        if($token){
-            return response()->json(['token'=> $token], 200);
-        } else{
-            return response()->json(['Erro'=> 'O email ou senha invalido'], 403);
-        }
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function criarContaFisica(Request $request)
     {
         try {
             $usuario = [
@@ -46,16 +29,6 @@ class ContaFisicaController extends Controller
         } catch (\Throwable $th) {
             return Response()->json(['erro'=> $th], 400);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        return response()->json(['usuario' => auth()->user()], 200);
     }
 
     /**

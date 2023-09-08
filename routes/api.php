@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('/conta-fisica', 'App\Http\Controllers\ContaFisicaController');
-Route::post('/conta-fisica/login', ['App\Http\Controllers\ContaFisicaController', 'login']);
+Route::post('/conta-fisica', ['App\Http\Controllers\ContaFisicaController', 'criarContaFisica']);
+Route::get('/conta', ['App\Http\Controllers\AuthController', 'mostrarUsuario']);
+Route::post('/login', ['App\Http\Controllers\AuthController', 'login']);

@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conta_bancarias', function (Blueprint $table) {
+        Schema::create('contas_bancaria', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->string('agencia')->unique();
+            $table->string('conta')->unique();
+            $table->string('saldo');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conta_bancarias');
+        Schema::dropIfExists('contas_bancaria');
     }
 };

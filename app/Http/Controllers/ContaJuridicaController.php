@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ContaJuridicaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -22,20 +14,21 @@ class ContaJuridicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function criarContaJuridica(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        try {
+            $usuario = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'cpf/cnpj' => $request->cnpj,
+                'password' => bcrypt($request->password),
+                'isJuridico' => true,
+            ];
+            $cliente = User::create($usuario);
+            return Response()->json(['Success' => $cliente], 200);
+        } catch (\Throwable $th) {
+            return Response()->json(['erro'=> $th], 400);
+        }
     }
 
     /**
