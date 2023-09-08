@@ -16,4 +16,9 @@ class ContaBancaria extends Model
         'conta',
         'saldo',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(App\Models\User::class);
+    }
 }

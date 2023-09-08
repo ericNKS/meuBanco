@@ -34,6 +34,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
     ];
+    protected $with = ['contaBancaria'];
 
     /**
      * The attributes that should be cast.
@@ -64,6 +65,10 @@ class User extends Authenticatable implements JWTSubject
         public function getJWTCustomClaims()
         {
             return [];
+        }
+        public function contaBancaria()
+        {
+            return $this->hasOne(ContaBancaria::class);
         }
 
 }

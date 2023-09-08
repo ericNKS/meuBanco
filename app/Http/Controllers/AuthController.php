@@ -23,18 +23,5 @@ class AuthController extends Controller
             return response()->json(['Erro'=> 'O email ou senha invalido'], 403);
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function mostrarUsuario()
-    {
-        $usuario = auth()->user();
-        if($usuario){
-            return response()->json(['usuario' => $usuario], 200);
-        } else{
-            return response()->json(['erro', 'Usuario inválido'], 403);
-        }
-    }
+    
 }

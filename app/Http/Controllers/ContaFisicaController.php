@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContaBancaria;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,6 +26,13 @@ class ContaFisicaController extends Controller
                 'password' => bcrypt($request->password)
             ];
             $cliente = User::create($usuario);
+            $conta_info = [
+                'user_id' => $cliente->id,
+                'agencia' => rand(1000,9999),
+                'conta' => rand(10000000, 99999999),
+                'saldo' => 0.00,
+            ];
+            $conta = ContaBancaria::create($conta_info);
             return Response()->json(['Success' => $cliente], 200);
         } catch (\Throwable $th) {
             return Response()->json(['erro'=> $th], 400);

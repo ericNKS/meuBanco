@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->unique();
             $table->string('agencia')->unique();
             $table->string('conta')->unique();
-            $table->string('saldo');
+            $table->double('saldo');
 
             $table->foreign('user_id')->references('id')->on('users');
         });

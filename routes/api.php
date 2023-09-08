@@ -20,5 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/conta-fisica', ['App\Http\Controllers\ContaFisicaController', 'criarContaFisica']);
-Route::get('/conta', ['App\Http\Controllers\AuthController', 'mostrarUsuario']);
+Route::post('/conta-juridica', ['App\Http\Controllers\ContaJuridicaController', 'criarContaJuridica']);
+Route::get('/conta', ['App\Http\Controllers\ContaBancariaController', 'mostrarUsuario']);
 Route::post('/login', ['App\Http\Controllers\AuthController', 'login']);
+
+Route::post('/transferencia', ['App\Http\Controllers\ContaBancariaController', 'transferencia']);
